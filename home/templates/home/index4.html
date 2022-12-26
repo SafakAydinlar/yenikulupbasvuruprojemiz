@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Başvuru Sayfası</title>
+
+
+  <style>
+    body {
+      background-color: white;
+      margin: 300px;
+    }
+
+
+    .form-control {
+
+      box-sizing: border-box;
+      width: 100%;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid black;
+    }
+
+    .form-group {
+
+      margin-bottom: 5px;
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 1px;
+    }
+
+    .form-control:focus {
+
+      border-color: rgb(8, 99, 99);
+      outline: 0;
+
+    }
+
+    .btn {
+
+      padding: 6px 17px;
+      border-radius: 4px;
+      color: blanchedalmond;
+      background-color: brown;
+      border: 1px solid antiquewhite;
+      border-radius: 7px;
+      margin: auto;
+    }
+
+
+    .btn:hover {
+
+      background-color: rgb(14, 114, 14);
+      border: 1px solid azure;
+    }
+
+    .btn2 {
+
+padding: 6px 17px;
+border-radius: 4px;
+color: blanchedalmond;
+background-color: brown;
+border: 1px solid antiquewhite;
+border-radius: 7px;
+margin: auto;
+}
+
+
+.btn2:hover {
+
+background-color:blue;
+border: 1px solid azure;
+}
+
+    h4 {
+  background-color: purple;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+ 
+    .flex-container > div {
+        color: white;
+        width: 100px;
+        height: 100px;
+    }
+
+  </style>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'accounts:logout' %}">Çıkış Yap</a>
+</nav>
+</head>
+
+<body>
+
+  <div align="center">
+    <h1>GFC Başvuru Ekranı</h1>
+  </div>
+
+  <div align="center">
+    <h5>Lütfen gerekli bilgileri eksiksiz olarak doldurunuz</h5>
+  </div>
+
+  <form action="{% url 'basvuru5' %}" method="post">
+    {%csrf_token%}
+
+    <div>
+      <a href="{% url 'export_excel' %}" class="btn btn-danger">Export to Excel(Download)</a>
+    </div>
+
+    <br>
+    <div align="center">
+      <h4>Kimlik Bilgileri</h4>
+    </div>
+    <hr>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Tc Kimlik</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="tckimlik" placeholder="Ör. 55677485762">
+    </div>
+
+
+    <div class="form-row form-group">
+      <div class="col">
+        <label for="formGroupExampleInput">İsim</label>
+        <input type="text" class="form-control" name="name" id="formGroupExampleInput" placeholder="Ör. Mert">
+      </div>
+
+      <div class="col">
+        <label for="formGroupExampleInput">Soyisim</label>
+        <input type="text" class="form-control" name="surname" id="formGroupExampleInput" placeholder="Ör. Yılmaz">
+      </div>
+    </div>
+
+
+    <br>
+    <div align="center">
+      <h4>İletişim Bilgileri</h4>
+    </div>
+    <hr>
+  
+<!-- 
+    <hr>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Email</label>
+      <input type="text" class="form-control" name="email" id="formGroupExampleInput" placeholder="Ör. 394773@ogr.ktu.edu.tr">
+    </div>
+-->
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" name="posta" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">Email bilginizi asla kimseyle paylaşmayız</small>
+    </div>
+
+    
+    <div class="form-group">
+      <label for="formGroupExampleInput">Telefon Numarası</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="telefon" placeholder="Ör. 55677485762">
+    </div>
+
+    
+    <div class="form-group">
+      <label for="formGroupExampleInput">Tecrübe Durumu</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="tecrübe" placeholder="Ör. Beginner">
+    </div>
+
+
+    <br>
+    <br>
+    <div align="center">
+      <h4>Eğitim Bilgileri</h4>
+    </div>
+    <hr>
+
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Bu kulübe neden katılmak istiyorsunuz?</label>
+      <input type="text" class="form-control" name="message" id="formGroupExampleInput" placeholder="Varsa mesajınızı buraya yazınız.">
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput54">Bölümünüz</label>
+      {{form.bolum}}
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput35">Cinsiyet</label>
+      {{form.cinsiyet}}
+    </div>
+
+
+    <div>
+      <button type="submit" class="btn btn-primary flex-container">Submit</button>
+    </div>
+    <br>
+    <!--<input type="submit" value="Basvur">-->
+  </form>
+  <br>
+  <br>
+
+  <form method="get">
+    <div>
+      {{myfilter.form}}
+      <button type="submit" class=" btn-primary">Ara</button>
+    </div>
+    <br>
+  </form>
+
+  
+
+  
+  {% if basvurular5 %}
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">İsim</th>
+        <th scope="col">Soyisim</th>
+        <th scope="col">Email</th>
+        <th scope="col">Durum</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for i in basvurular5 %}
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.surname}}</td>
+        <td>{{i.posta}}</td>
+
+        {% if i.confirmed %}
+        <td>Onaylandı</td>
+        {% else %}
+        <td>Onay Bekliyor...</td>
+        {% endif %}
+
+      </tr>
+        
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+
+  <div class="alert alert-danger"> Henüz herhangi bir başvuru yok!</div>
+  {% endif %}
+
+
+  
+  
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
